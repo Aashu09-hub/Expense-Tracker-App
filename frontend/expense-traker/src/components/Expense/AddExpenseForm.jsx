@@ -8,6 +8,7 @@ const AddExpenseForm = ({ onAddExpense }) => {
     amount:"",
     date:"",
     icon:"",
+    source:"",
   });
 
   const handleChange = (key, value) => setIncome({ ...income, [key]: value});

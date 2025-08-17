@@ -8,6 +8,8 @@ import { API_PATHS } from '../../utils/apiPaths';
 import ExpenseList from '../../components/Expense/ExpenseList';
 import Modal from '../../components/Modal';
 import DeleteAlert from '../../components/DeleteAlert';
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Expense = () => {
   useUserAuth();
@@ -46,10 +48,15 @@ const Expense = () => {
     const { source, amount, date, icon } = expense;
 
     // Validation Checks
-    if (!source.trim()) {
-      toast.error("Source is required.")
-      return;
-    }
+    // if (!source.trim()) {
+    //   toast.error("Source is required.")
+    //   return;
+    // }
+    if (!source || !source.trim()) {
+  toast.error("Source is required.");
+  return;
+}
+
     if (!amount || isNaN(amount) || Number(amount) <= 0) {
       toast.error("Amount should be a valid number greater than 0.")
       return;

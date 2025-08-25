@@ -45,14 +45,14 @@ const Expense = () => {
 
   //Handle Add Expense
   const handleAddExpense = async (expense) => {
-    const { source, amount, date, icon } = expense;
+    const { category, amount, date, icon } = expense;
 
     // Validation Checks
     // if (!source.trim()) {
     //   toast.error("Source is required.")
     //   return;
     // }
-    if (!source || !source.trim()) {
+    if (!category || !category.trim()) {
   toast.error("Source is required.");
   return;
 }
@@ -68,7 +68,7 @@ const Expense = () => {
     }
     try {
       await axiosInstance.post(API_PATHS.EXPENSE.ADD_EXPENSE, {
-        source,
+        category,
         amount,
         date,
         icon,

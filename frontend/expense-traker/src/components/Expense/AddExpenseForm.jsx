@@ -8,7 +8,7 @@ const AddExpenseForm = ({ onAddExpense }) => {
     amount:"",
     date:"",
     icon:"",
-    source:"",
+    //source:"",
   });
 
   const handleChange = (key, value) => setIncome({ ...income, [key]: value});
@@ -20,9 +20,9 @@ const AddExpenseForm = ({ onAddExpense }) => {
     />
 
     <Input
-      value={income.source}
-      onChange={({ target }) => handleChange("Source", target.value)}
-      label="Source"
+      value={income.category}
+      onChange={({ target }) => handleChange("category", target.value)}
+      label="Category"
       placeholder="Rent, Groceries, etc"
       type="text"
     />

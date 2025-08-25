@@ -10,14 +10,14 @@ exports.getDashboardData = async (req, res) => {
 
         //Fetch total income & expenses
         const totalIncome = await Income.aggregate([
-            { $match: { userId: userObjectId } },
+            { $match: { userId: userObjectId, source:{ $exists: true, $ne:""}} },
             { $group: { _id: null, total: { $sum: "$amount" } } },
         ]);
 
         console.log("totalIncome", { totalIncome, userId: isValidObjectId(userId) });
 
         const totalExpense = await Expense.aggregate([
-            { $match: { userId: userObjectId, source: { $exists: true, $ne: "" } } },
+            { $match: { userId: userObjectId, category: { $exists: true, $ne: "" } } },
             { $group: { _id: null, total: { $sum: "$amount" } } },
         ]);
 
@@ -49,7 +49,7 @@ exports.getDashboardData = async (req, res) => {
         console.log("All expenses:", allExpenses.map(e => ({
             amount: e.amount,
             date: e.date,
-            source: e.source,
+            category: e.category,
         })));
 
 

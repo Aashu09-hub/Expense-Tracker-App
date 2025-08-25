@@ -6,7 +6,7 @@ exports.addIncome = async (req, res) => {
     const userId = req.user.id;
 
     try{
-        const{ icon, source,amount,date } = req.body;
+        const{ icon, source, amount, date } = req.body;
 
         //Validation: Check for missing fields
         if(!source || !amount || !date){

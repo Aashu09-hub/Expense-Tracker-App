@@ -6,16 +6,16 @@ exports.addExpense = async (req, res) => {
     const userId = req.user.id;
 
     try{
-        const{ icon, source, amount, date } = req.body;
+        const{ icon, category, amount, date } = req.body;
 
         //Validation: Check for missing fields
-        if(!source || !amount || !date){
+        if(!category || !amount || !date){
             return res.status(400).json({message: "All fields are required"});
         }
         const newExpense = new Expense({
             userId,
             icon,
-            source,
+            category,
             amount,
             date:new Date(date)
         });
@@ -57,7 +57,7 @@ exports.downloadExpenseExcel = async (req, res) => {
 
         //prepare data for Excel
         const data = expense.map((item) => ({
-            Source: item.source,
+            category: item.category,
             Amount: item.amount,
             Date: item.date,
         }));
